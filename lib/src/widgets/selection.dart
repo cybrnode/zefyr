@@ -94,6 +94,13 @@ class ZefyrSelectionOverlayState extends State<ZefyrSelectionOverlay>
   bool get isToolbarHidden => _toolbar == null;
 
   @override
+  void userUpdateTextEditingValue(
+      TextEditingValue value, SelectionChangedCause cause) {
+    // TODO: implement userUpdateTextEditingValue
+    throw 'not implemented';
+  }
+
+  @override
   TextEditingValue get textEditingValue =>
       _scope.controller.plainTextEditingValue;
 
@@ -114,7 +121,7 @@ class ZefyrSelectionOverlayState extends State<ZefyrSelectionOverlay>
   }
 
   @override
-  void hideToolbar() {
+  void hideToolbar([bool hideHandles = true]) {
     _didCaretTap = false; // reset double tap.
     _toolbar?.remove();
     _toolbar = null;
@@ -664,6 +671,7 @@ class _SelectionToolbarState extends State<_SelectionToolbar> {
       endpoints,
       widget.selectionOverlay,
       widget.clipboardStatus,
+      null,
     );
     return CompositedTransformFollower(
       link: block.layerLink,
